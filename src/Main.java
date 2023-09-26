@@ -2,17 +2,9 @@ import javax.xml.soap.Text;
 
 public class Main {
     public static void main(String[] args) {
-//       IdandPasswords idandpasswords = new IdandPasswords();
-//
-//
-//       TextEditor texteditor = new TextEditor();
-
-//        StartHomePage starthomepage = new StartHomePage("surbhi");
-
-//        Quiz quiz = new Quiz("Rahul");
-
-        StartHomePage homePage = new StartHomePage("rahul");
-
+        IdandPasswords idandpasswords = new IdandPasswords();
+        LoginPage loginpage = new LoginPage(idandpasswords.getLoginCredentials());
+        // Quiz quiz = new Quiz("maniket");
     }
 
 }

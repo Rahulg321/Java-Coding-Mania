@@ -25,9 +25,16 @@ public class TextEditor extends JFrame implements ActionListener {
     JMenuItem exitFile;
 
 
+    String questionAsked;
+    String currentUser;
 
 
-     TextEditor(){
+
+     TextEditor(String questionSelected, String username){
+         questionAsked = questionSelected;
+         currentUser = username;
+
+
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setSize(500,500);
          this.setTitle("solve problem");
@@ -38,6 +45,7 @@ public class TextEditor extends JFrame implements ActionListener {
 //         textArea.setPreferredSize(new Dimension(450,450));
          textArea.setWrapStyleWord(true);
          textArea.setLineWrap(true);
+         textArea.setText(questionAsked);
          textArea.setFont(new Font("Arial", Font.PLAIN,18));
 
 
@@ -165,7 +173,8 @@ public class TextEditor extends JFrame implements ActionListener {
 
         }
         if(e.getSource() == exitFile){
-            System.exit(0);
+            this.dispose();
+            Quiz quiz = new Quiz(currentUser);
         }
 
 

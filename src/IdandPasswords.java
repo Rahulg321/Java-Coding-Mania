@@ -6,8 +6,12 @@ public class IdandPasswords {
    HashMap<String,String> loginInfo = new HashMap<String, String>();
    IdandPasswords(){
        loginInfo.put("bro","hello");
-       loginInfo.put("rahulg","Friendship");
-       loginInfo.put("surbhi","testing");
+       loginInfo.put("rahul","Friendship");
+       loginInfo.put("rishi","testing");
+       loginInfo.put("sam","testing");
+       loginInfo.put("name","testing");
+       loginInfo.put("shivam","testing");
+       loginInfo.put("maniket","testing");
    }
 
    protected HashMap getLoginCredentials(){

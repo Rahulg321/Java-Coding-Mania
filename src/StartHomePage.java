@@ -28,23 +28,23 @@ public class StartHomePage implements ActionListener {
 
         textfield.setBounds(0,0,650,50);
         textfield.setBackground(new Color(25,25,25));
-        textfield.setForeground(new Color(25,255,0));
-        textfield.setFont(new Font("Ink Free", Font.BOLD,25));
+        textfield.setForeground(new Color(213,210,212));
+        textfield.setFont(new Font("Georgia", Font.BOLD,30));
         textfield.setBorder(BorderFactory.createBevelBorder(1));
         textfield.setHorizontalAlignment(JTextField.CENTER);
         textfield.setEditable(false);
-        textfield.setText("Welcome "+currentUser+" to Coding Mania");
+        textfield.setText("Coding Mania");
 
 
         textArea.setBounds(0,50,650,50);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25,25,25));
-        textArea.setForeground(new Color(25,255,0));
+        textArea.setForeground(new Color(213,210,212));
         textArea.setFont(new Font("Mv Boli", Font.BOLD,25));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
-        textArea.setText("What do you wanna do?");
+        textArea.setText("Hey "+ currentUser+" What do you wanna do?");
 
 
         buttonA.setBounds(0,100,100,100);
@@ -70,7 +70,7 @@ public class StartHomePage implements ActionListener {
 
         answerLabelB.setBounds(125,200,500,100);
         answerLabelB.setBackground(new Color(50,50,50));
-        answerLabelB.setForeground(new Color(25,255,0));
+        answerLabelB.setForeground(new Color(255,0,0));
         answerLabelB.setFont(new Font("Mv Boli", Font.PLAIN,35));
         answerLabelB.setText("I want to quit");
 

@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Quiz implements ActionListener {
 
     String[] questions = {
+            "",
             "Peform Linear Search on an Array",
             "Peform Binary Search on an Array",
             "Peform Merge Sort on an Array",
@@ -16,12 +17,7 @@ public class Quiz implements ActionListener {
             "Traverse a binary Search Tree",
     };
 
-    char guess;
-    char answer;
-    int index = 0;
-    int correct_guesses = 0;
-    int totalQuestions = questions.length;
-    int result;
+    int index = 1;
     int minutes = 30;
 
     JFrame frame = new JFrame();
@@ -42,8 +38,25 @@ public class Quiz implements ActionListener {
 
     String currentuser;
 
+    Timer timer = new Timer((60000), new ActionListener() {
+
+        public void actionPerformed(ActionEvent e) {
+            minutes--;
+            minutes_left.setText(String.valueOf(minutes));
+
+            if (minutes <= 0) {
+                JOptionPane.showMessageDialog(null, "Your timer has run out!", "Timer Alert",
+                        JOptionPane.WARNING_MESSAGE);
+
+                // Stop the timer (optional)
+                ((Timer) e.getSource()).stop();
+            }
+        }
+    });
+
     public Quiz(String userName) {
         currentuser = userName;
+        timer.start();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 650);
@@ -53,8 +66,8 @@ public class Quiz implements ActionListener {
 
         textfield.setBounds(0, 0, 650, 50);
         textfield.setBackground(new Color(25, 25, 25));
-        textfield.setForeground(new Color(25, 255, 0));
-        textfield.setFont(new Font("Ink Free", Font.BOLD, 30));
+        textfield.setForeground(new Color(213, 210, 212));
+        textfield.setFont(new Font("DejaVu Sans", Font.BOLD, 30));
         textfield.setBorder(BorderFactory.createBevelBorder(1));
         textfield.setHorizontalAlignment(JTextField.CENTER);
         textfield.setEditable(false);
@@ -64,11 +77,11 @@ public class Quiz implements ActionListener {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
-        textArea.setForeground(new Color(25, 255, 0));
-        textArea.setFont(new Font("Mv Boli", Font.BOLD, 25));
+        textArea.setForeground(new Color(213, 210, 212));
+        textArea.setFont(new Font("Consolas", Font.PLAIN, 23));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
-        textArea.setText(questions[index]);
+        textArea.setText("Q" + (index) + " " + questions[index]);
 
         buttonA.setBounds(0, 100, 100, 100);
         buttonA.setFont(new Font("Mv Boli", Font.BOLD, 35));
@@ -98,19 +111,19 @@ public class Quiz implements ActionListener {
 
         answerLabelB.setBounds(125, 200, 500, 100);
         answerLabelB.setBackground(new Color(50, 50, 50));
-        answerLabelB.setForeground(new Color(25, 255, 0));
+        answerLabelB.setForeground(new Color(254, 228, 82));
         answerLabelB.setFont(new Font("Mv Boli", Font.PLAIN, 35));
         answerLabelB.setText("Next question");
 
         answerLabelC.setBounds(125, 300, 500, 100);
         answerLabelC.setBackground(new Color(50, 50, 50));
-        answerLabelC.setForeground(new Color(25, 255, 0));
+        answerLabelC.setForeground(new Color(220, 241, 255));
         answerLabelC.setFont(new Font("Mv Boli", Font.PLAIN, 35));
         answerLabelC.setText("Previous Question");
 
         answerLabelD.setBounds(125, 400, 500, 100);
         answerLabelD.setBackground(new Color(50, 50, 50));
-        answerLabelD.setForeground(new Color(25, 255, 0));
+        answerLabelD.setForeground(new Color(255, 92, 33));
         answerLabelD.setFont(new Font("Mv Boli", Font.PLAIN, 35));
         answerLabelD.setText("Go Back to Home Page");
 
@@ -149,7 +162,7 @@ public class Quiz implements ActionListener {
     public void nextQuestion() {
         if (index < questions.length - 1) {
             index++;
-            textArea.setText(questions[index]);
+            textArea.setText("Q" + (index) + " " + questions[index]);
         } else {
             System.out.println("cannot retrieve next question");
         }
@@ -157,9 +170,9 @@ public class Quiz implements ActionListener {
     }
 
     public void prevQuestion() {
-        if (index > 0) {
+        if (index > 1) {
             index--;
-            textArea.setText(questions[index]);
+            textArea.setText("Q" + (index) + " " + questions[index]);
         } else {
             System.out.println("Cannot retrieve prev question");
         }
@@ -170,7 +183,7 @@ public class Quiz implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonA) {
             System.out.println("Button A was clicked");
-            TextEditor texteditor = new TextEditor();
+            TextEditor texteditor = new TextEditor(questions[index], currentuser);
         }
 
         if (e.getSource() == buttonB) {
